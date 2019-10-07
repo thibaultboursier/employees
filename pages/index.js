@@ -1,11 +1,12 @@
 import fetch from "isomorphic-fetch";
 import EmployeeList from "../components/EmployeeList";
+import Layout from "../components/Layout";
 
 const Home = ({data: employees}) => {
   return (
-    <div>
+    <Layout>
         <EmployeeList employees={employees} />
-    </div>
+    </Layout>
   );
 };
 
