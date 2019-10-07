@@ -12,11 +12,11 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 
 import { createSlug } from "../utils/slug";
+import { Grid, Paper } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    maxWidth: 360,
     backgroundColor: theme.palette.background.paper
   },
   inline: {
@@ -29,27 +29,35 @@ const EmployeeList = ({ employees }) => {
   const isLastItem = itemIndex => itemIndex === employees.length - 1;
 
   return (
-    <List className={classes.root}>
-      {employees.map((employee, index) => (
-        <Fragment key={employee.id}>
-          <Link
-            as={`employees/${createSlug(employee)}`}
-            href={`employees/${employee.id}`}
-          >
-            <ListItem alignItems="flex-start" button>
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src={employee.avatar} />
-              </ListItemAvatar>
-              <ListItemText
-                primary={`${employee.first_name} ${employee.last_name}`}
-                secondary={employee.email}
-              />
-            </ListItem>
-          </Link>
-          {!isLastItem(index) && <Divider variant="inset" component="li" />}
-        </Fragment>
-      ))}
-    </List>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Paper>
+          <List className={classes.root}>
+            {employees.map((employee, index) => (
+              <Fragment key={employee.id}>
+                <Link
+                  as={`employees/${createSlug(employee)}`}
+                  href={`employees/${employee.id}`}
+                >
+                  <ListItem alignItems="flex-start" button>
+                    <ListItemAvatar>
+                      <Avatar alt="Remy Sharp" src={employee.avatar} />
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={`${employee.first_name} ${employee.last_name}`}
+                      secondary={employee.email}
+                    />
+                  </ListItem>
+                </Link>
+                {!isLastItem(index) && (
+                  <Divider variant="inset" component="li" />
+                )}
+              </Fragment>
+            ))}
+          </List>
+        </Paper>
+      </Grid>
+    </Grid>
   );
 };
 

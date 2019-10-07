@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 
 const Home = ({data: employees}) => {
   return (
-    <Layout title="Employees">
+    <Layout title="List">
         <EmployeeList employees={employees} />
     </Layout>
   );
