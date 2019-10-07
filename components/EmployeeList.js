@@ -24,10 +24,11 @@ const useStyles = makeStyles(theme => ({
 
 const EmployeeList = ({ employees }) => {
   const classes = useStyles();
+  const isLastItem = itemIndex => itemIndex === employees.length - 1;
 
   return (
     <List className={classes.root}>
-      {employees.map(employee => (
+      {employees.map((employee, index) => (
         <>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
@@ -38,7 +39,7 @@ const EmployeeList = ({ employees }) => {
               secondary={employee.email}
             />
           </ListItem>
-          <Divider variant="inset" component="li" />
+          {!isLastItem(index) && <Divider variant="inset" component="li" />}
         </>
       ))}
     </List>
