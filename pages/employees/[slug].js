@@ -27,9 +27,12 @@ const Employee = ({ data: employee }) => {
   );
 };
 
-Employee.getInitialProps = async ({ query }) => {
+Employee.getInitialProps = async ({ query, req }) => {
   const id = getIdFromSlug(query.slug);
-  const response = await fetch(`${API}/employees/${id}`);
+  const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+  const host = req.headers.host;
+  const baseUrl = `${protocol}://${host}`;
+  const response = await fetch(`${baseUrl}/api/${API.employees}/${id}`);
 
   return await response.json();
 };
