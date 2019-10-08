@@ -1,6 +1,7 @@
 import fetch from "isomorphic-fetch";
 import EmployeeList from "../components/EmployeeList";
 import Layout from "../components/Layout";
+import { API } from "../config";
 
 const Home = ({data: employees}) => {
   return (
@@ -11,7 +12,7 @@ const Home = ({data: employees}) => {
 };
 
 Home.getInitialProps = async () => {
-  const response = await fetch("https://reqres.in/api/users");
+  const response = await fetch(`${API}/employees`);
 
   return await response.json();
 };
